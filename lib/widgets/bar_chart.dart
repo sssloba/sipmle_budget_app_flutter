@@ -9,16 +9,16 @@ class BarChart extends StatelessWidget {
   Widget build(BuildContext context) {
     double mostExpensive = 0;
 
-    expenses.forEach((double price) {
+    for (double price in expenses) {
       if (price > mostExpensive) {
         mostExpensive = price;
       }
-    });
+    }
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: Column(
         children: <Widget>[
-          Text(
+          const Text(
             'Weekly Spending',
             style: TextStyle(
               fontSize: 20.0,
@@ -26,18 +26,18 @@ class BarChart extends StatelessWidget {
               letterSpacing: 1.2,
             ),
           ),
-          SizedBox(height: 5.0),
+          const SizedBox(height: 5.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_back,
                 ),
                 iconSize: 30.0,
               ),
-              Text(
+              const Text(
                 'Nov 10, 2021 - Nov 16, 2021',
                 style: TextStyle(
                   fontSize: 18.0,
@@ -47,14 +47,14 @@ class BarChart extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {},
-                icon: Icon(
+                icon: const Icon(
                   Icons.arrow_forward,
                 ),
                 iconSize: 30.0,
               ),
             ],
           ),
-          SizedBox(height: 30.0),
+          const SizedBox(height: 30.0),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.end,
@@ -120,9 +120,9 @@ class Bar extends StatelessWidget {
       children: <Widget>[
         Text(
           '\$${amountSpent.toStringAsFixed(2)}',
-          style: TextStyle(fontWeight: FontWeight.w600),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
-        SizedBox(height: 6.0),
+        const SizedBox(height: 6.0),
         Container(
           height: barHeight,
           width: 18.0,
@@ -131,10 +131,10 @@ class Bar extends StatelessWidget {
             borderRadius: BorderRadius.circular(6.0),
           ),
         ),
-        SizedBox(height: 8.0),
+        const SizedBox(height: 8.0),
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16.0,
             fontWeight: FontWeight.w600,
           ),

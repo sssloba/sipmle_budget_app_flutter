@@ -15,17 +15,17 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   _buildExpenses() {
     List<Widget> expenseList = [];
-    widget.category.expenses.forEach((Expense expense) {
+    for (Expense expense in widget.category.expenses) {
       expenseList.add(
         Container(
           alignment: Alignment.center,
-          margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+          margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           height: 80.0,
           width: double.infinity,
           decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10.0),
-              boxShadow: [
+              boxShadow: const [
                 BoxShadow(
                   color: Colors.black12,
                   offset: Offset(0, 2),
@@ -39,14 +39,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
               children: <Widget>[
                 Text(
                   expense.name,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
                   '-\$${expense.cost.toStringAsFixed(2)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.red,
                     fontSize: 20.0,
                     fontWeight: FontWeight.w600,
@@ -57,7 +57,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
         ),
       );
-    });
+    }
     return Column(
       children: expenseList,
     );
@@ -66,9 +66,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
     double totalAmountSpent = 0;
-    widget.category.expenses.forEach((Expense expence) {
+    for (Expense expence in widget.category.expenses) {
       totalAmountSpent += expence.cost;
-    });
+    }
 
     final double amountLeft = widget.category.maxAmount - totalAmountSpent;
     final double percent = amountLeft / widget.category.maxAmount;
@@ -80,24 +80,24 @@ class _CategoryScreenState extends State<CategoryScreen> {
         actions: <Widget>[
           IconButton(
             onPressed: () {},
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             iconSize: 30.0,
           ),
         ],
       ),
       body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: <Widget>[
             Container(
-              margin: EdgeInsets.all(20.0),
-              padding: EdgeInsets.all(20.0),
+              margin: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(20.0),
               height: 250.0,
               width: double.infinity,
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10.0),
-                boxShadow: [
+                boxShadow: const [
                   BoxShadow(
                     color: Colors.black12,
                     offset: Offset(0, 2),
@@ -114,7 +114,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 child: Center(
                   child: Text(
                     '\$${amountLeft.toStringAsFixed(2)} / \$${widget.category.maxAmount}',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w600,
                     ),

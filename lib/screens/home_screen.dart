@@ -23,14 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-        padding: EdgeInsets.all(20.0),
+        margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        padding: const EdgeInsets.all(20.0),
         height: 100.0,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0),
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.black12,
               offset: Offset(0, 2),
@@ -46,11 +46,12 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 Text(
                   category.name,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
+                  style: const TextStyle(
+                      fontSize: 20.0, fontWeight: FontWeight.w600),
                 ),
                 Text(
                   '\$${(category.maxAmount - totalAmountSpent).toStringAsFixed(2)} / \$${category.maxAmount.toStringAsFixed(2)}',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18.0,
                     fontWeight: FontWeight.w600,
                   ),
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
               final double percent =
                   (category.maxAmount - totalAmountSpent) / category.maxAmount;
               double barWidth = percent * maxBarWidth;
-              print(barWidth);
+              //print(barWidth);
 
               if (barWidth < 0) {
                 barWidth = 0;
@@ -100,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: <Widget>[
           SliverAppBar(
             // collapsedHeight: 60.0,
@@ -110,17 +111,17 @@ class _HomeScreenState extends State<HomeScreen> {
             //snap: true,
             forceElevated: true,
             leading: IconButton(
-              icon: Icon(Icons.settings),
+              icon: const Icon(Icons.settings),
               iconSize: 30.0,
               onPressed: () {},
             ),
-            flexibleSpace: FlexibleSpaceBar(
+            flexibleSpace: const FlexibleSpaceBar(
               title: Text('Simple Budget'),
               centerTitle: true,
             ),
             actions: <Widget>[
               IconButton(
-                icon: Icon(Icons.add),
+                icon: const Icon(Icons.add),
                 iconSize: 30.0,
                 onPressed: () {},
               )
@@ -131,11 +132,11 @@ class _HomeScreenState extends State<HomeScreen> {
               (BuildContext context, int index) {
                 if (index == 0) {
                   return Container(
-                    margin: EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
+                    margin: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
                     //height: 100.0,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      boxShadow: [
+                      boxShadow: const [
                         BoxShadow(
                             color: Colors.black12,
                             offset: Offset(0, 2),
@@ -148,9 +149,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 } else {
                   final Category category = categories[index - 1];
                   double totalAmountSpent = 0;
-                  category.expenses.forEach((Expense expence) {
+                  for (Expense expence in category.expenses) {
                     totalAmountSpent += expence.cost;
-                  });
+                  }
                   return _buildCategory(category, totalAmountSpent);
                 }
               },
